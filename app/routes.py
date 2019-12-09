@@ -18,10 +18,13 @@ def nmapdef(data):
 @app.route('/')
 @app.route('/index')
 def index():
-   return render_template('index.html', title='hive', message='hello world')
+   return render_template('index.html', title='hive')
 
 @app.route('/scaner', methods=['POST'])
 def scanner():
-   user =  nmapdef(request.form['domainname'])
-   print(user)
-   return json.dumps({'status':'OK','user':user})
+   if (request.form['domainname'] != '127.0.0.1'):
+      user =  nmapdef(request.form['domainname'])
+      print(user)
+      return json.dumps({'status':'OK','user':user})
+   else:
+      return json.dumps({'status':'OK','user':'local Ip cannot be used'})

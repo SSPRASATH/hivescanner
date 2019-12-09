@@ -134,8 +134,9 @@ $(function() {
             success: function(response) {
                 document.getElementById('loading').style.display='none' 
                 document.getElementById('dataTable').style.display='block'
-                if((JSON.parse(response))['user'] == '0'){
-                  document.getElementById("contentjson").innerHTML += '<p id="padrl" style="color:#d9534f"> host down</p>'; 
+                if((JSON.parse(response))['user'] == '0' || (JSON.parse(response))['user'] == 'local Ip cannot be used' ){
+
+                  document.getElementById("contentjson").innerHTML += '<p id="padrl" style="color:#d9534f"> host down/ local ip address cannot be searched</p>'; 
                 }
                 else {
                 document.getElementById("contentjson").textContent = '';
